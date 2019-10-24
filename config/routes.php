@@ -88,7 +88,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      * You can remove these routes once you've connected the
      * routes you want in your application.
      */
-    $routes->connect('/dns', ['controller' => 'DnsNames', 'action' => 'index']);
+    $routes->connect('/dns', ['controller' => 'DnsNamesIpv4s', 'action' => 'index']);
     $routes->fallbacks(DashedRoute::class);
 });
 
