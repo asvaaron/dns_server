@@ -29,248 +29,550 @@ endif;
 
 $cakeDescription = 'CakePHP: the rapid development PHP framework';
 ?>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <?= $this->Html->charset() ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?= $cakeDescription ?>
-    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <?= $this->Html->meta('icon') ?>
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('home.css') ?>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
+    <title>Checkout example for Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/checkout/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
 </head>
-<body class="home">
 
-<header class="row">
-    <div class="header-image"><?= $this->Html->image('cake.logo.svg') ?></div>
-    <div class="header-title">
-        <h1>Welcome to CakePHP <?= Configure::version() ?> Red Velvet. Build fast. Grow solid.</h1>
+<body class="bg-light">
+
+<div class="container">
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h2>Checkout form</h2>
+        <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
     </div>
-</header>
 
-<div class="row">
-    <div class="columns large-12">
-        <div class="ctp-warning alert text-center">
-            <p>Please be aware that this page will not be shown if you turn off debug mode unless you replace src/Template/Pages/home.ctp with your own version.</p>
-        </div>
-        <div id="url-rewriting-warning" class="alert url-rewriting">
-            <ul>
-                <li class="bullet problem">
-                    URL rewriting is not properly configured on your server.<br />
-                    1) <a target="_blank" href="https://book.cakephp.org/3.0/en/installation.html#url-rewriting">Help me configure it</a><br />
-                    2) <a target="_blank" href="https://book.cakephp.org/3.0/en/development/configuration.html#general-configuration">I don't / can't use URL rewriting</a>
+    <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Your cart</span>
+                <span class="badge badge-secondary badge-pill">3</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Product name</h6>
+                        <small class="text-muted">Brief description</small>
+                    </div>
+                    <span class="text-muted">$12</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Second product</h6>
+                        <small class="text-muted">Brief description</small>
+                    </div>
+                    <span class="text-muted">$8</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Third item</h6>
+                        <small class="text-muted">Brief description</small>
+                    </div>
+                    <span class="text-muted">$5</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between bg-light">
+                    <div class="text-success">
+                        <h6 class="my-0">Promo code</h6>
+                        <small>EXAMPLECODE</small>
+                    </div>
+                    <span class="text-success">-$5</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total (USD)</span>
+                    <strong>$20</strong>
                 </li>
             </ul>
+
+            <form class="card p-2">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Promo code">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-secondary">Redeem</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <?php Debugger::checkSecurityKeys(); ?>
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Billing address</h4>
+            <form class="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName">First name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Valid first name is required.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Last name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Valid last name is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="username">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                        </div>
+                        <input type="text" class="form-control" id="username" placeholder="Username" required>
+                        <div class="invalid-feedback" style="width: 100%;">
+                            Your username is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                    <div class="invalid-feedback">
+                        Please enter a valid email address for shipping updates.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                    <div class="invalid-feedback">
+                        Please enter your shipping address.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+                    <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5 mb-3">
+                        <label for="country">Country</label>
+                        <select class="custom-select d-block w-100" id="country" required>
+                            <option value="">Choose...</option>
+                            <option>United States</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select a valid country.
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="state">State</label>
+                        <select class="custom-select d-block w-100" id="state" required>
+                            <option value="">Choose...</option>
+                            <option>California</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please provide a valid state.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="zip">Zip</label>
+                        <input type="text" class="form-control" id="zip" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Zip code required.
+                        </div>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="same-address">
+                    <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="save-info">
+                    <label class="custom-control-label" for="save-info">Save this information for next time</label>
+                </div>
+                <hr class="mb-4">
+
+                <h4 class="mb-3">Payment</h4>
+
+                <div class="d-block my-3">
+                    <div class="custom-control custom-radio">
+                        <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                        <label class="custom-control-label" for="credit">Credit card</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                        <label class="custom-control-label" for="debit">Debit card</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+                        <label class="custom-control-label" for="paypal">Paypal</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-name">Name on card</label>
+                        <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                        <small class="text-muted">Full name as displayed on card</small>
+                        <div class="invalid-feedback">
+                            Name on card is required
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-number">Credit card number</label>
+                        <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Credit card number is required
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-expiration">Expiration</label>
+                        <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Expiration date required
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-expiration">CVV</label>
+                        <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Security code required
+                        </div>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+            </form>
+        </div>
     </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017-2018 Company Name</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer>
 </div>
 
-<div class="row">
-    <div class="columns large-6">
-        <h4>Environment</h4>
-        <ul>
-        <?php if (version_compare(PHP_VERSION, '5.6.0', '>=')) : ?>
-            <li class="bullet success">Your version of PHP is 5.6.0 or higher (detected <?= PHP_VERSION ?>).</li>
-        <?php else : ?>
-            <li class="bullet problem">Your version of PHP is too low. You need PHP 5.6.0 or higher to use CakePHP (detected <?= PHP_VERSION ?>).</li>
-        <?php endif; ?>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../../assets/js/vendor/popper.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<script src="../../assets/js/vendor/holder.min.js"></script>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
 
-        <?php if (extension_loaded('mbstring')) : ?>
-            <li class="bullet success">Your version of PHP has the mbstring extension loaded.</li>
-        <?php else : ?>
-            <li class="bullet problem">Your version of PHP does NOT have the mbstring extension loaded.</li>
-        <?php endif; ?>
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
 
-        <?php if (extension_loaded('openssl')) : ?>
-            <li class="bullet success">Your version of PHP has the openssl extension loaded.</li>
-        <?php elseif (extension_loaded('mcrypt')) : ?>
-            <li class="bullet success">Your version of PHP has the mcrypt extension loaded.</li>
-        <?php else : ?>
-            <li class="bullet problem">Your version of PHP does NOT have the openssl or mcrypt extension loaded.</li>
-        <?php endif; ?>
-
-        <?php if (extension_loaded('intl')) : ?>
-            <li class="bullet success">Your version of PHP has the intl extension loaded.</li>
-        <?php else : ?>
-            <li class="bullet problem">Your version of PHP does NOT have the intl extension loaded.</li>
-        <?php endif; ?>
-        </ul>
-    </div>
-    <div class="columns large-6">
-        <h4>Filesystem</h4>
-        <ul>
-        <?php if (is_writable(TMP)) : ?>
-            <li class="bullet success">Your tmp directory is writable.</li>
-        <?php else : ?>
-            <li class="bullet problem">Your tmp directory is NOT writable.</li>
-        <?php endif; ?>
-
-        <?php if (is_writable(LOGS)) : ?>
-            <li class="bullet success">Your logs directory is writable.</li>
-        <?php else : ?>
-            <li class="bullet problem">Your logs directory is NOT writable.</li>
-        <?php endif; ?>
-
-        <?php $settings = Cache::getConfig('_cake_core_'); ?>
-        <?php if (!empty($settings)) : ?>
-            <li class="bullet success">The <em><?= $settings['className'] ?>Engine</em> is being used for core caching. To change the config edit config/app.php</li>
-        <?php else : ?>
-            <li class="bullet problem">Your cache is NOT working. Please check the settings in config/app.php</li>
-        <?php endif; ?>
-        </ul>
-    </div>
-    <hr />
-</div>
-
-<div class="row">
-    <div class="columns large-6">
-        <h4>Database</h4>
-        <?php
-        try {
-            $connection = ConnectionManager::get('default');
-            $connected = $connection->connect();
-        } catch (Exception $connectionError) {
-            $connected = false;
-            $errorMsg = $connectionError->getMessage();
-            if (method_exists($connectionError, 'getAttributes')) :
-                $attributes = $connectionError->getAttributes();
-                if (isset($errorMsg['message'])) :
-                    $errorMsg .= '<br />' . $attributes['message'];
-                endif;
-            endif;
-        }
-        ?>
-        <ul>
-        <?php if ($connected) : ?>
-            <li class="bullet success">CakePHP is able to connect to the database.</li>
-        <?php else : ?>
-            <li class="bullet problem">CakePHP is NOT able to connect to the database.<br /><?= $errorMsg ?></li>
-        <?php endif; ?>
-        </ul>
-    </div>
-    <div class="columns large-6">
-        <h4>DebugKit</h4>
-        <ul>
-        <?php if (Plugin::isLoaded('DebugKit')) : ?>
-            <li class="bullet success">DebugKit is loaded.</li>
-        <?php else : ?>
-            <li class="bullet problem">DebugKit is NOT loaded. You need to either install pdo_sqlite, or define the "debug_kit" connection name.</li>
-        <?php endif; ?>
-        </ul>
-    </div>
-    <hr />
-</div>
-
-<div class="row">
-    <div class="columns large-6">
-        <h3>Editing this Page</h3>
-        <ul>
-            <li class="bullet cutlery">To change the content of this page, edit: src/Template/Pages/home.ctp.</li>
-            <li class="bullet cutlery">You can also add some CSS styles for your pages at: webroot/css/.</li>
-        </ul>
-    </div>
-    <div class="columns large-6">
-        <h3>Getting Started</h3>
-        <ul>
-            <li class="bullet book"><a target="_blank" href="https://book.cakephp.org/3.0/en/">CakePHP 3.0 Docs</a></li>
-            <li class="bullet book"><a target="_blank" href="https://book.cakephp.org/3.0/en/tutorials-and-examples/cms/installation.html">The 20 min CMS Tutorial</a></li>
-        </ul>
-    </div>
-</div>
-
-<div class="row">
-    <div class="columns large-12 text-center">
-        <h3 class="more">More about Cake</h3>
-        <p>
-            CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Front Controller and MVC.<br />
-            Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility.
-        </p>
-    </div>
-    <hr/>
-</div>
-
-<div class="row">
-    <div class="columns large-4">
-        <i class="icon support">P</i>
-        <h3>Help and Bug Reports</h3>
-        <ul>
-            <li class="bullet cutlery">
-                <a href="irc://irc.freenode.net/cakephp">irc.freenode.net #cakephp</a>
-                <ul><li>Live chat about CakePHP</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://cakesf.herokuapp.com/">Slack</a>
-                <ul><li>CakePHP Slack support</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://github.com/cakephp/cakephp/issues">CakePHP Issues</a>
-                <ul><li>CakePHP issues and pull requests</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://discourse.cakephp.org/">CakePHP Forum</a>
-                <ul><li>CakePHP official discussion forum</li></ul>
-            </li>
-        </ul>
-    </div>
-    <div class="columns large-4">
-        <i class="icon docs">r</i>
-        <h3>Docs and Downloads</h3>
-        <ul>
-            <li class="bullet cutlery">
-                <a href="https://api.cakephp.org/3.0/">CakePHP API</a>
-                <ul><li>Quick Reference</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://book.cakephp.org/3.0/en/">CakePHP Documentation</a>
-                <ul><li>Your Rapid Development Cookbook</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://bakery.cakephp.org">The Bakery</a>
-                <ul><li>Everything CakePHP</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://plugins.cakephp.org">CakePHP plugins repo</a>
-                <ul><li>A comprehensive list of all CakePHP plugins created by the community</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://github.com/cakephp/">CakePHP Code</a>
-                <ul><li>For the Development of CakePHP Git repository, Downloads</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://github.com/FriendsOfCake/awesome-cakephp">CakePHP Awesome List</a>
-                <ul><li>A curated list of amazingly awesome CakePHP plugins, resources and shiny things.</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://www.cakephp.org">CakePHP</a>
-                <ul><li>The Rapid Development Framework</li></ul>
-            </li>
-        </ul>
-    </div>
-    <div class="columns large-4">
-        <i class="icon training">s</i>
-        <h3>Training and Certification</h3>
-        <ul>
-            <li class="bullet cutlery">
-                <a href="https://cakefoundation.org/">Cake Software Foundation</a>
-                <ul><li>Promoting development related to CakePHP</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://training.cakephp.org/">CakePHP Training</a>
-                <ul><li>Learn to use the CakePHP framework</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://certification.cakephp.org/">CakePHP Certification</a>
-                <ul><li>Become a certified CakePHP developer</li></ul>
-            </li>
-        </ul>
-    </div>
-</div>
-
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
 </body>
 </html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Checkout example for Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/checkout/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container">
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h2>Checkout form</h2>
+        <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Your cart</span>
+                <span class="badge badge-secondary badge-pill">3</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Product name</h6>
+                        <small class="text-muted">Brief description</small>
+                    </div>
+                    <span class="text-muted">$12</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Second product</h6>
+                        <small class="text-muted">Brief description</small>
+                    </div>
+                    <span class="text-muted">$8</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Third item</h6>
+                        <small class="text-muted">Brief description</small>
+                    </div>
+                    <span class="text-muted">$5</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between bg-light">
+                    <div class="text-success">
+                        <h6 class="my-0">Promo code</h6>
+                        <small>EXAMPLECODE</small>
+                    </div>
+                    <span class="text-success">-$5</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total (USD)</span>
+                    <strong>$20</strong>
+                </li>
+            </ul>
+
+            <form class="card p-2">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Promo code">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-secondary">Redeem</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Billing address</h4>
+            <form class="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName">First name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Valid first name is required.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Last name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Valid last name is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="username">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                        </div>
+                        <input type="text" class="form-control" id="username" placeholder="Username" required>
+                        <div class="invalid-feedback" style="width: 100%;">
+                            Your username is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                    <div class="invalid-feedback">
+                        Please enter a valid email address for shipping updates.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                    <div class="invalid-feedback">
+                        Please enter your shipping address.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+                    <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5 mb-3">
+                        <label for="country">Country</label>
+                        <select class="custom-select d-block w-100" id="country" required>
+                            <option value="">Choose...</option>
+                            <option>United States</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select a valid country.
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="state">State</label>
+                        <select class="custom-select d-block w-100" id="state" required>
+                            <option value="">Choose...</option>
+                            <option>California</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please provide a valid state.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="zip">Zip</label>
+                        <input type="text" class="form-control" id="zip" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Zip code required.
+                        </div>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="same-address">
+                    <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="save-info">
+                    <label class="custom-control-label" for="save-info">Save this information for next time</label>
+                </div>
+                <hr class="mb-4">
+
+                <h4 class="mb-3">Payment</h4>
+
+                <div class="d-block my-3">
+                    <div class="custom-control custom-radio">
+                        <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                        <label class="custom-control-label" for="credit">Credit card</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                        <label class="custom-control-label" for="debit">Debit card</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+                        <label class="custom-control-label" for="paypal">Paypal</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-name">Name on card</label>
+                        <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                        <small class="text-muted">Full name as displayed on card</small>
+                        <div class="invalid-feedback">
+                            Name on card is required
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-number">Credit card number</label>
+                        <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Credit card number is required
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-expiration">Expiration</label>
+                        <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Expiration date required
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-expiration">CVV</label>
+                        <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Security code required
+                        </div>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017-2018 Company Name</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+</body>
+</html>
+
