@@ -16,6 +16,8 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Http\Exception\BadRequestException;
+use Cake\Validation\Validator;
 
 /**
  * Application Controller
@@ -52,4 +54,51 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
     }
+
+
+    /**
+     * Set Json responses for the controllers methods
+     * @throws \Exception
+     */
+    protected function setJsonResponse(){
+        $this->loadComponent('RequestHandler');
+        $this->RequestHandler->renderAs($this, 'json');
+        $this->response->type('application/json');
+    }
+
+    public function validationDefault($attributes = null)
+    {
+        if (!$attributes) {
+            return false;
+        }
+        $validator = new Validator();
+        $validator ->requirePresence($attributes)
+            ->notEmpty($attributes);
+        return $validator;
+    }
+
+    /**
+     * Standard error response
+     *
+     * @param string $msg message of the response
+     *
+     * @return \Cake\Http\Response
+     *
+     */
+    public function error($msg, $status_code = 500){
+        $body = $this->response->getBody();
+        $data = json_encode([
+            'status' => 'error',
+            'message' => $msg,
+        ]);
+        $body->write($data);
+        $this ->setJsonResponse();
+        switch ($status_code){
+            case 400: throw new BadRequestException($msg,400); // 400 Bad Request
+            case 401: throw new BadRequestException($msg,401); // 500 Bad Request
+            case 500: throw new BadRequestException($msg,500); // 500 Bad Request
+        }
+        return $this->response->withStatus(500); // use this line also 'application/json');
+    }
+
 }
