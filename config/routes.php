@@ -55,7 +55,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      * Apply a middleware to the current route scope.
      * Requires middleware to be registered via `Application::routes()` with `registerMiddleware()`
      */
-    $routes->applyMiddleware('csrf');
+    //$routes->applyMiddleware('csrf');
 
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
@@ -89,6 +89,15 @@ Router::scope('/', function (RouteBuilder $routes) {
      * routes you want in your application.
      */
     $routes->connect('/dns', ['controller' => 'DnsNamesIpv4s', 'action' => 'index']);
+    /*
+     * Add Api namespace
+     */
+    $routes->scope('/api', function ($routes) {
+        $routes->scope('/v1', function ($routes) {
+            $routes->connect('/dns-test', ['controller' => 'DnsNamesIps', 'action' => 'addMultipleDns']);
+        });
+    });
+
     $routes->fallbacks(DashedRoute::class);
 });
 
