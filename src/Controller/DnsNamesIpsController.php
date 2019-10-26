@@ -20,18 +20,14 @@ use Cake\Validation\Validator;
 class DnsNamesIpsController extends AppController
 {
 
-    public function validateDnsData(){
-        $validator = new Validator();
-        $validator
-            ->ipv4('ip_address', 'Please enter ip address')
-            ->requirePresence('ip_address')
-            ->notEmpty('ip_address')
-            ->requirePresence('domain')
-            ->notEmpty('domain');
-        return $validator;
 
-    }
-
+    /**
+     * Method for adding multiple dns in the database
+     * it validates if it's possible to isert the paramets
+     * properly
+     *
+     * @return \Cake\Http\Response
+     */
     public function addMultipleDns()
     {
         // Add possible atrributes the request can reiceive
@@ -45,7 +41,7 @@ class DnsNamesIpsController extends AppController
         if ($this->request->is('post')) {
             $data = $this->request->getData();
             foreach ($data["dns_list"] as $key => $value) {
-                $validatorDns = $this->validateDnsData();
+                $validatorDns = $dnsTable->validateDnsData();
                 if ($validatorDns->errors($data["dns_list"][$key]))
                     $data["dns_list"][$key]['added'] = 0;
                 else {

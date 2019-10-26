@@ -66,4 +66,17 @@ class DnsNamesIpv4sTable extends Table
 
         return $validator;
     }
+
+    public function validateDnsData(){
+        $validator = new Validator();
+        $validator
+            ->ipv4('ip_address', 'Please enter a valid ip address')
+            ->requirePresence('ip_address','Please enter ip address ')
+            ->notEmpty('ip_address', 'Please enter not null ip address')
+            ->requirePresence('domain', 'Please enter domain')
+            ->notEmpty('domain', 'Please enter a domain')
+            ->url('domain', 'Please enter a valid domain');
+        return $validator;
+
+    }
 }
