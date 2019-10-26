@@ -20,12 +20,7 @@ class DnsNamesIpv4 extends AbstractMigration
     public function change()
     {
         $table = $this->table('dns_names_ipv4s');
-//            [
-//                'id' => true,
-//                'primary_key' => ['id']
-//            ]
-//        );
-//        $table ->addColumn('id', 'uuid');
+
         $table->addColumn('domain_name', 'string', [
             'default' => null,
             'limit' => 255,
@@ -44,6 +39,18 @@ class DnsNamesIpv4 extends AbstractMigration
             'default' => null,
             'null' => false,
         ]);
+        $table->addIndex(
+            [
+                'ip_address',
+            ],
+            ['unique' => true]
+        );
+        $table->addIndex(
+            [
+                'domain_name'
+            ],
+            ['unique' => true]
+        );
         $table->addIndex(
             [
                 'ip_address',
