@@ -109,13 +109,13 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 
                 <hr class="mb-4">
                 <div class="row">
-                    <div class="col-md-10 mb-3">
-                        <button class="btn btn-primary btn-lg btn-block" type="submit" id="add-dns-values">Continue to checkout</button>
+                    <div class="col-md-8 mb-3">
+                        <button class="btn btn-primary btn-lg btn-block" type="submit" id="add-dns-values">Insert DNS</button>
                     </div>
-                    <div class="col-md-2 mb-3">
-                        <button class="btn btn-secondary btn-lg btn-block btn-add" >Add</button>
+                    <div class="col-md-4 mb-3">
+                        <button class="btn btn-success btn-lg btn-block btn-add" >Add new</button>
                     </div>
-                    <div id="dns-request-output">
+                    <div class="col-md-12 mb-3" id="dns-request-output">
 
                     </div>
                 </div>
@@ -189,8 +189,8 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
                 $('#dns-request-output').append(
                     '<div class="alert alert-success alert-dismissible fade show" role="alert">\n' +
                     '<strong>Succesfull request!</strong> \n' +
-                    '<p> Failed: ' +failed.join(', ') + '</p>'+
-                    '<p> Passed: ' +passed.join(', ') + '</p>'+
+                    '<p> <strong> Domain(s) Failed: </strong> ' +failed.join(', ') + '</p>'+
+                    '<p> <strong> Domain(s) Passed: </strong> ' +passed.join(', ') + '</p>'+
                     '<button type="button" class="close" data-dismiss="alert" aria-label="Close">\n' +
                     '<span aria-hidden="true">&times;</span>\n' +
                     '</button>\n' +
