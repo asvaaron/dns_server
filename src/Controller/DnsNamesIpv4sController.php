@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 
 /**
@@ -105,43 +106,4 @@ class DnsNamesIpv4sController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-
-
-
-    public function validateDnsData(){
-        $validator = new Validator();
-        $validator
-            ->ipv4('ip_address', 'Please enter ip address')
-            ->requirePresence('ip_address')
-            ->notEmpty('ip_address')
-            ->requirePresence('domain')
-            ->notEmpty('domain');
-        return $validator;
-
-    }
-
-    public function addMultipleDns(){
-        // Add possible atrributes the request can reiceive
-        $attributes = ['dns_list'];
-        $validator = $this->validationDefault($attributes);
-        $data = $this->request->getData();
-        if ($validator->errors($data))
-            return $this->error( 'error.validation', 401);
-        if ($this->request->is('post')) {
-            $data = $this->request->getData();
-            foreach ($data["dns_list"] as $key=>$value){
-                $validatorDns = $this->validateDnsData();
-                if ($validatorDns->errors($data["dns_list"][$key]))
-                    $data["dns_list"][$key]['added'] = 0;
-                else
-                    $data["dns_list"][$key]['added'] = 1;
-            }
-
-            try {
-                $this->setJsonResponse();
-            } catch (\Exception $e) {
-            }
-            $this->set(['result' => $data, '_serialize' => 'result']);
-        }
-    }
 }
