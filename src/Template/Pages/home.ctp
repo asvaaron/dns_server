@@ -54,15 +54,15 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 <div class="container">
     <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h2>Checkout form</h2>
-        <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        <h2>Dns insertion form</h2>
+        <p class="lead">Bellow is a form for inserting dns ip-domain pair values. The Server will validate the correct insertion</p>
     </div>
 
     <div class="row">
         <div class="col-md-4 order-md-2 mb-4">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-muted">Your cart</span>
-                <span class="badge badge-secondary badge-pill">3</span>
+                <span class="text-muted">Examples</span>
+                <span class="badge badge-secondary badge-pill">2</span>
             </h4>
             <ul class="list-group mb-3">
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
@@ -168,43 +168,45 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 
 
         });
-        console.log(data);
         $.ajax({
-            url: 'http://localhost:8765/api/v1/dns-test',
+            url: 'http://localhost:8765/api/v1/add-dns',
             dataType: 'json',
             type: 'post',
             contentType: 'application/json',
             data: JSON.stringify(data),
             processData: false,
             success: function( data, textStatus, jQxhr ){
-                // $('#response pre').html( JSON.stringify( data ) );
                 var passed = [];
                 var failed = [];
                 data['dns_list'].forEach(function (item, index) {
-                if(item['addded'] ===1){
-                    passed.push(item)
-                }
-                else{
-                    failed.push(item)
-                }
-                console.log(failed.join(', '));
-                console.log(passed.join(', '));
+                    if (item['added'] === 1) {
+                        passed.push(item['domain'])
+                    } else {
+                        failed.push(item['domain'])
+                    }
+                });
+                console.log(failed,passed);
                 $('#dns-request-output').append(
                     '<div class="alert alert-success alert-dismissible fade show" role="alert">\n' +
                     '<strong>Succesfull request!</strong> \n' +
-                    '<p> Failed:' +failed.join(', ') + '</p>'+
-                    '<p> Passed:' +passed.join(', ') + '</p>'+
+                    '<p> Failed: ' +failed.join(', ') + '</p>'+
+                    '<p> Passed: ' +passed.join(', ') + '</p>'+
                     '<button type="button" class="close" data-dismiss="alert" aria-label="Close">\n' +
                     '<span aria-hidden="true">&times;</span>\n' +
                     '</button>\n' +
-                    '</div>')
-                });
+                    '</div>'
+                );
 
 
             },
             error: function( jqXhr, textStatus, errorThrown ){
-                console.log('no functiona');
                 console.log( errorThrown );
+                $('#dns-request-output').append('<div class="alert alert-error alert-dismissible fade show" role="alert">\n' +
+                    '<strong>Error !</strong>,' + errorThrown.toString()+
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">\n' +
+                    '<span aria-hidden="true">&times;</span>\n' +
+                    '</button>\n' +
+                    '</div>');
             }
         });
     });
