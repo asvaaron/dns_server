@@ -94,7 +94,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->scope('/api', function ($routes) {
         $routes->scope('/v1', function ($routes) {
-            $routes->connect('/dns-test', ['controller' => 'DnsNamesIps', 'action' => 'addMultipleDns']);
+            $routes->connect('/add-dns', ['controller' => 'DnsNamesIps', 'action' => 'addMultipleDns']);
         });
     });
 
