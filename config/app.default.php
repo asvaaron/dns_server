@@ -263,6 +263,7 @@ return [
             'database' => '/home/aaron/Projects/dns_server/database.db',
             'encoding' => 'UTF-8'
         ],
+
         /**
          * The test connection is used during the test suite.
          */
@@ -274,7 +275,7 @@ return [
             'port' => '',
             'login' => '',
             'password' => '',
-            'database' => '/home/aaron/Projects/dns_server/test_mydatabase.db',
+            'database' => '/home/aaron/Projects/dns_server/test_database.db',
             'encoding' => 'UTF-8'
         ],
 
