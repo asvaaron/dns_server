@@ -67,46 +67,22 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
             <ul class="list-group mb-3">
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
-                        <h6 class="my-0">Product name</h6>
-                        <small class="text-muted">Brief description</small>
+                        <h6 class="my-0">
+                            <a href="https://github.com">Github</a>
+                        </h6>
+                        <small class="text-muted">140.82.114.3</small>
                     </div>
-                    <span class="text-muted">$12</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
-                        <h6 class="my-0">Second product</h6>
-                        <small class="text-muted">Brief description</small>
+                        <h6 class="my-0">
+                            <a href="https://google.com">Google</a>
+                        </h6>
+                        <small class="text-muted">172.217.1.100</small>
                     </div>
-                    <span class="text-muted">$8</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">Third item</h6>
-                        <small class="text-muted">Brief description</small>
-                    </div>
-                    <span class="text-muted">$5</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between bg-light">
-                    <div class="text-success">
-                        <h6 class="my-0">Promo code</h6>
-                        <small>EXAMPLECODE</small>
-                    </div>
-                    <span class="text-success">-$5</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between">
-                    <span>Total (USD)</span>
-                    <strong>$20</strong>
                 </li>
             </ul>
 
-            <form class="card p-2">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Promo code">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-secondary">Redeem</button>
-                    </div>
-                </div>
-            </form>
         </div>
         <div class="col-md-8 order-md-1">
             <h3 class="mb-3">DNS Insertions</h3>
@@ -139,7 +115,9 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
                     <div class="col-md-2 mb-3">
                         <button class="btn btn-secondary btn-lg btn-block btn-add" >Add</button>
                     </div>
+                    <div id="dns-request-output">
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -200,7 +178,29 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
             processData: false,
             success: function( data, textStatus, jQxhr ){
                 // $('#response pre').html( JSON.stringify( data ) );
-                console.log(data)
+                var passed = [];
+                var failed = [];
+                data['dns_list'].forEach(function (item, index) {
+                if(item['addded'] ===1){
+                    passed.push(item)
+                }
+                else{
+                    failed.push(item)
+                }
+                console.log(failed.join(', '));
+                console.log(passed.join(', '));
+                $('#dns-request-output').append(
+                    '<div class="alert alert-success alert-dismissible fade show" role="alert">\n' +
+                    '<strong>Succesfull request!</strong> \n' +
+                    '<p> Failed:' +failed.join(', ') + '</p>'+
+                    '<p> Passed:' +passed.join(', ') + '</p>'+
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">\n' +
+                    '<span aria-hidden="true">&times;</span>\n' +
+                    '</button>\n' +
+                    '</div>')
+                });
+
+
             },
             error: function( jqXhr, textStatus, errorThrown ){
                 console.log('no functiona');
